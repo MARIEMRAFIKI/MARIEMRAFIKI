@@ -1,0 +1,141 @@
+install.packages("readxl")  # Install the readxl package
+library
+data <- read_excel("/content/Chimie.xlsx")
+data
+t_test_result <- t.test(data$Score_sortie, data$Score_entrée, paired = TRUE)
+print(t_test_result)
+library(ggplot2)
+library(tidyr)
+
+# Convert data to long format for plotting
+data_long <- data %>%
+  pivot_longer(cols = c(Score_entrée, Score_sortie),
+               names_to = "Type_test",
+               values_to = "Score")
+
+# Plot the scores
+ggplot(data_long, aes(x = ID, y = Score, color = Type_test)) +
+  geom_point() +
+  geom_line(aes(group = ID), linetype = "solid") +  # Line connecting entry and exit scores for each student
+  labs(title = "Scores des tests d'entrée et de sortie des candidats",
+       x = "ID du candidat",
+       y = "Scores",
+       color = "Type de test") +
+  theme_minimal()
+# Convert data to long format for plotting
+data_long <- data %>%
+  pivot_longer(cols = c(Score_entrée, Score_sortie),
+               names_to = "Type_test",
+               values_to = "Score")
+
+# Plot the scores with regression lines
+ggplot(data_long, aes(x = ID, y = Score, color = Type_test)) +
+  geom_point() +  # Plot the data points for entry and exit scores
+  geom_smooth(method = "lm", se = FALSE) +  # Add regression lines without confidence intervals
+  labs(title = "Scores d'entrée et de sortie avec des droites de régression pour la chimie",
+       x = "ID du candidat",
+       y = "Scores",
+       color = "Type de test") +
+  theme_minimal()
+# Melt the data for ggplot
+melted_data <- pivot_longer(data, cols = c(Score_entrée, Score_sortie), names_to = "Type_score", values_to = "Scores")
+
+# Create box plot
+ggplot(melted_data, aes(x = Type_score, y = Scores, fill = Type_score)) +
+  geom_boxplot() +
+  labs(title = "Comparaison des scores d'entrée et de sortie", x = "Type de score", y = "Scores") +
+  theme_minimal() +
+  scale_fill_manual(values = c("Score_entrée" = "skyblue", "Score_sortie" = "lightgreen"))
+data <- read_excel("/content/Maths.xlsx")
+data
+t_test_result <- t.test(data$Score_sortie, data$Score_entrée, paired = TRUE)
+print(t_test_result)
+library(ggplot2)
+library(tidyr)
+
+# Convert data to long format for plotting
+data_long <- data %>%
+  pivot_longer(cols = c(Score_entrée, Score_sortie),
+               names_to = "Type_test",
+               values_to = "Score")
+
+# Plot the scores
+ggplot(data_long, aes(x = ID, y = Score, color = Type_test)) +
+  geom_point() +
+  geom_line(aes(group = ID), linetype = "solid") +  # Line connecting entry and exit scores for each student
+  labs(title = "Scores d'entrée et de sortie des candidats",
+       x = "ID du candidat",
+       y = "Scores",
+       color = "Type de test") +
+  theme_minimal()
+# Convert data to long format for plotting
+data_long <- data %>%
+  pivot_longer(cols = c(Score_entrée, Score_sortie),
+               names_to = "Type_test",
+               values_to = "Score")
+
+# Plot the scores with regression lines
+ggplot(data_long, aes(x = ID, y = Score, color = Type_test)) +
+  geom_point() +  # Plot the data points for entry and exit scores
+  geom_smooth(method = "lm", se = FALSE) +  # Add regression lines without confidence intervals
+  labs(title = "Scores d'entrée et de sortie avec des droites de régression pour les mathématiques",
+       x = "ID du candidat",
+       y = "Scores",
+       color = "Type de test") +
+  theme_minimal()
+# Melt the data for ggplot
+melted_data <- pivot_longer(data, cols = c(Score_entrée, Score_sortie), names_to = "Type_score", values_to = "Scores")
+
+# Create box plot
+ggplot(melted_data, aes(x = Type_score, y = Scores, fill = Type_score)) +
+  geom_boxplot() +
+  labs(title = "Comparaison des scores d'entrée et de sortie", x = "Type de score", y = "Scores") +
+  theme_minimal() +
+  scale_fill_manual(values = c("Score_entrée" = "skyblue", "Score_sortie" = "lightgreen"))
+data <- read_excel("/content/Physique.xlsx")
+data
+t_test_result <- t.test(data$Score_sortie, data$Score_entrée, paired = TRUE)
+print(t_test_result)
+library(ggplot2)
+library(tidyr)
+
+# Convert data to long format for plotting
+data_long <- data %>%
+  pivot_longer(cols = c(Score_entrée, Score_sortie),
+               names_to = "Type_test",
+               values_to = "Score")
+
+# Plot the scores
+ggplot(data_long, aes(x = ID, y = Score, color = Type_test)) +
+  geom_point() +
+  geom_line(aes(group = ID), linetype = "solid") +  # Line connecting entry and exit scores for each student
+  labs(title = "Scores des tests d'entrée et de sortie des candidats",
+       x = "ID du candidat",
+       y = "Scores",
+       color = "Type de test") +
+  theme_minimal()
+# Convert data to long format for plotting
+data_long <- data %>%
+  pivot_longer(cols = c(Score_entrée, Score_sortie),
+               names_to = "Type_test",
+               values_to = "Score")
+
+# Plot the scores with regression lines
+ggplot(data_long, aes(x = ID, y = Score, color = Type_test)) +
+  geom_point() +  # Plot the data points for entry and exit scores
+  geom_smooth(method = "lm", se = FALSE) +  # Add regression lines without confidence intervals
+  labs(title = "Scores des tests d'entrée et de sortie avec des droites de régression pour la matière de physique",
+       x = "ID du candidat",
+       y = "Scores",
+       color = "Type de test") +
+  theme_minimal()
+# Melt the data for ggplot
+melted_data <- pivot_longer(data, cols = c(Score_entrée, Score_sortie), names_to = "Type_score", values_to = "Scores")
+
+# Create box plot
+ggplot(melted_data, aes(x = Type_score, y = Scores, fill = Type_score)) +
+  geom_boxplot() +
+  labs(title = "Comparaison des scores des tests d'entrée et de sortie", x = "Type de score", y = "Scores") +
+  theme_minimal() +
+  scale_fill_manual(values = c("Score_entrée" = "skyblue", "Score_sortie" = "lightgreen"))
+
